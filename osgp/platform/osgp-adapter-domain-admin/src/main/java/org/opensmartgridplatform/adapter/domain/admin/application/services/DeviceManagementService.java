@@ -7,13 +7,26 @@
  */
 package org.opensmartgridplatform.adapter.domain.admin.application.services;
 
+import java.net.InetAddress;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.opensmartgridplatform.domain.core.entities.Device;
+import org.opensmartgridplatform.domain.core.entities.OrmRtuDevice;
+import org.opensmartgridplatform.domain.core.entities.Position;
+import org.opensmartgridplatform.domain.core.entities.RtuDevice;
 import org.opensmartgridplatform.domain.core.entities.Ssld;
 import org.opensmartgridplatform.domain.core.exceptions.PlatformException;
 import org.opensmartgridplatform.domain.core.exceptions.UnknownEntityException;
 import org.opensmartgridplatform.domain.core.repositories.DeviceRepository;
+import org.opensmartgridplatform.domain.core.repositories.OrmRtuDeviceRepository;
+import org.opensmartgridplatform.domain.core.repositories.RtuDeviceRepository;
 import org.opensmartgridplatform.domain.core.repositories.SsldRepository;
 import org.opensmartgridplatform.domain.core.validation.PublicKey;
+import org.opensmartgridplatform.domain.core.valueobjects.DeviceLifecycleStatus;
+import org.opensmartgridplatform.dto.valueobjects.DeviceRegistrationDataDto;
+import org.opensmartgridplatform.dto.valueobjects.orm.PositionDto;
+import org.opensmartgridplatform.dto.valueobjects.orm.RtuDeviceDto;
 import org.opensmartgridplatform.shared.exceptionhandling.ComponentType;
 import org.opensmartgridplatform.shared.exceptionhandling.FunctionalException;
 import org.opensmartgridplatform.shared.exceptionhandling.FunctionalExceptionType;
@@ -37,6 +50,9 @@ public class DeviceManagementService extends AbstractService {
 
     @Autowired
     private DeviceRepository deviceRepository;
+    
+    @Autowired
+	private OrmRtuDeviceRepository ormRtuDeviceRepository;
 
     @Autowired
     private SsldRepository ssldRepository;
@@ -68,6 +84,28 @@ public class DeviceManagementService extends AbstractService {
                 messageType, null);
     }
 
+    
+    public void activateDevice(final String organisationIdentification, @Identification final String deviceIdentification,
+            final String correlationUid, final String messageType, final String ipAddress)
+            throws FunctionalException {
+
+        LOGGER.info("MessageType: {}. Activate device [{}] on behalf of organisation [{}]", messageType,
+                deviceIdentification, organisationIdentification);
+
+        try {
+            this.organisationDomainService.searchOrganisation(organisationIdentification);
+        } catch (final UnknownEntityException e) {
+            throw new FunctionalException(FunctionalExceptionType.UNKNOWN_ORGANISATION, ComponentType.DOMAIN_ADMIN, e);
+        }
+        
+        final DeviceRegistrationDataDto deviceRegistrationData = new DeviceRegistrationDataDto(ipAddress, "RTU", false);
+
+        this.osgpCoreRequestMessageSender.send(
+                new RequestMessage(correlationUid, organisationIdentification, deviceIdentification, deviceRegistrationData),
+                messageType, null);
+    }
+
+    
     public void handleUpdateKeyResponse(final String deviceIdentification, final String organisationIdentification,
             final String correlationUid, final String messageType, final ResponseMessageResultType deviceResult,
             final OsgpException exception) {
@@ -162,6 +200,69 @@ public class DeviceManagementService extends AbstractService {
             LOGGER.error("Unexpected Exception", e);
             result = ResponseMessageResultType.NOT_OK;
             osgpException = new TechnicalException(ComponentType.UNKNOWN, "Exception occurred while revoking key", e);
+        }
+
+        final ResponseMessage responseMessage = ResponseMessage.newResponseMessageBuilder()
+                .withCorrelationUid(correlationUid).withOrganisationIdentification(organisationIdentification)
+                .withDeviceIdentification(deviceIdentification).withResult(result).withOsgpException(osgpException)
+                .build();
+        this.webServiceResponseMessageSender.send(responseMessage);
+    }
+    
+    public void handleActivateDeviceResponse(final String deviceIdentification, final String organisationIdentification,
+            final String correlationUid, final String messageType, final ResponseMessageResultType deviceResult,
+            final OsgpException exception, final RtuDeviceDto rtuDeviceDto) {
+
+        LOGGER.info("MessageType: {}. Handle activate device response for device: {} for organisation: {}", messageType,
+                deviceIdentification, organisationIdentification);
+
+        ResponseMessageResultType result = ResponseMessageResultType.OK;
+        OsgpException osgpException = exception;
+
+        Ssld device = this.ssldRepository.findByDeviceIdentification(deviceIdentification);
+        
+        try {
+            if (deviceResult == ResponseMessageResultType.NOT_OK || osgpException != null) {
+            	device = this.ssldRepository.findByDeviceIdentification(deviceIdentification);
+        		device.setDeviceLifecycleStatus(DeviceLifecycleStatus.UNDER_TEST);
+
+        		this.ssldRepository.save(device);
+            	
+            	LOGGER.error("Device Response not ok.", osgpException);
+                throw osgpException;
+            }
+            
+            String ipAddress = rtuDeviceDto.getIp().trim();
+			InetAddress networkAddress = InetAddress.getByName(ipAddress);
+            device.updateRegistrationData(networkAddress, "RTU");
+            device.setPublicKeyPresent(true);
+            this.ssldRepository.save(device);
+            
+            List<Position> positions = new ArrayList<Position>();
+            OrmRtuDevice rtuDevice = this.ormRtuDeviceRepository.findByDeviceIdentification(deviceIdentification);
+            if (rtuDevice == null) {
+            	rtuDevice = new OrmRtuDevice(deviceIdentification);
+            } 		
+            rtuDevice.setPositions(positions);
+            
+            for(PositionDto positionDto : rtuDeviceDto.getPositions()) {
+            	positions.add(new Position(
+            			positionDto.getNumPos(),
+            			positionDto.getType() != null ? positionDto.getType() : null,
+            			positionDto.getName() != null ? positionDto.getName() : null,
+            			positionDto.getStatus() != null ? positionDto.getStatus() : null,
+            			rtuDevice));
+            }
+            
+            this.ormRtuDeviceRepository.save(rtuDevice);
+            
+            LOGGER.info("Device {} has been activated for organisation: {}", deviceIdentification,
+                    organisationIdentification);
+
+        } catch (final Exception e) {
+            LOGGER.error("Unexpected Exception", e);
+            result = ResponseMessageResultType.NOT_OK;
+            osgpException = new TechnicalException(ComponentType.UNKNOWN, "Exception occurred while updating key", e);
         }
 
         final ResponseMessage responseMessage = ResponseMessage.newResponseMessageBuilder()

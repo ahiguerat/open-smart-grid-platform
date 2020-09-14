@@ -113,6 +113,21 @@ public class FirmwareManagementService extends AbstractService {
                                 org.opensmartgridplatform.dto.valueobjects.FirmwareUpdateMessageDataContainer.class)),
                 messageType, messagePriority, device.getIpAddress(), scheduleTime);
     }
+    
+    public void handleUpdateFirmwareResponse(DeviceFirmwareFile deviceFirmwareFile,final CorrelationIds ids, final String messageType, final int messagePriority,
+            final ResponseMessageResultType deviceResult, final OsgpException exception) {
+    	
+    	if (deviceResult == ResponseMessageResultType.OK) {
+    		this.deviceFirmwareFileRepository.save(deviceFirmwareFile);
+    	}
+    	
+    	final ResponseMessage responseMessage = ResponseMessage.newResponseMessageBuilder()
+                .withIds(ids)
+                .withResult(deviceResult)
+                .build();
+        this.webServiceResponseMessageSender.send(responseMessage);
+    	
+    }
 
     private void createSsldPendingFirmwareUpdateRecord(final CorrelationIds ids, final String firmwareUrl) {
         try {

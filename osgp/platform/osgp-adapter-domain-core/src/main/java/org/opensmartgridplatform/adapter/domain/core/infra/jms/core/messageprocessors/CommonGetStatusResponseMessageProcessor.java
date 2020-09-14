@@ -13,6 +13,7 @@ import javax.jms.ObjectMessage;
 import org.opensmartgridplatform.adapter.domain.core.application.services.DeviceInstallationService;
 import org.opensmartgridplatform.adapter.domain.core.infra.jms.ws.WebServiceResponseMessageSender;
 import org.opensmartgridplatform.dto.valueobjects.DeviceStatusDto;
+import org.opensmartgridplatform.dto.valueobjects.orm.DeviceEventDto;
 import org.opensmartgridplatform.shared.exceptionhandling.ComponentType;
 import org.opensmartgridplatform.shared.exceptionhandling.OsgpException;
 import org.opensmartgridplatform.shared.infra.jms.BaseMessageProcessor;
@@ -92,11 +93,11 @@ public class CommonGetStatusResponseMessageProcessor extends BaseMessageProcesso
         try {
             LOGGER.info("Calling application service function to handle response: {}", messageType);
 
-            final DeviceStatusDto deviceStatusDto = (DeviceStatusDto) dataObject;
+            final DeviceEventDto deviceStatusDto = (DeviceEventDto) dataObject;
 
             final CorrelationIds ids = new CorrelationIds(organisationIdentification, deviceIdentification,
                     correlationUid);
-            this.deviceInstallationService.handleGetStatusResponse(deviceStatusDto, ids, messageType, messagePriority,
+            this.deviceInstallationService.handleGetOrmStatusResponse(deviceStatusDto, ids, messageType, messagePriority,
                     responseMessageResultType, osgpException);
 
         } catch (final Exception e) {

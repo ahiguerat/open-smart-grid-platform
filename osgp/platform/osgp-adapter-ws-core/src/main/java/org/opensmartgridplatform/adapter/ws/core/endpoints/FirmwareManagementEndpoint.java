@@ -176,6 +176,27 @@ public class FirmwareManagementEndpoint {
         String moduleVersionMbus = null;
         String moduleVersionSec = null;
         String moduleVersionMBusDriverActive = null;
+      
+        // RTU version modules
+        String moduleVersionXmlInt = null;
+        String moduleVersionXml2ccp = null;
+        String moduleVersionLibmmslite = null;
+        String moduleVersionEkorccp = null;
+        String moduleVersionDimxccp = null;
+        String moduleVersionRtuschemas = null;
+        String moduleVersionLocaltime = null;
+        String moduleVersionLibxsdset = null;
+        String moduleVersionFreedisk = null;
+        String moduleVersionEkorrtuws = null;
+        String moduleVersionEkorWeb = null;
+        String moduleVersionCcpC = null;
+        
+        String moduleVersionDarmccp = null;
+        String moduleVersionExpect = null;
+        String moduleVersionOpenssh = null;
+        String moduleVersionOpenssl = null;
+        String moduleVersionProftpd = null;
+        String moduleVersionTcpdump = null;
 
         for (final FirmwareModuleType firmwareModuleType : firmwareModuleTypes) {
             final String firmwareModuleTypeString = firmwareModuleType.toString();
@@ -191,11 +212,54 @@ public class FirmwareManagementEndpoint {
                 moduleVersionSec = firmwareModuleTypeString;
             } else if (FirmwareModuleType.M_BUS_DRIVER_ACTIVE.equals(firmwareModuleType)) {
                 moduleVersionMBusDriverActive = firmwareModuleTypeString;
+                
+            // RTU version modules
+            } else if (FirmwareModuleType.XMLINT.equals(firmwareModuleType)) {
+                moduleVersionXmlInt = firmwareModuleTypeString;
+            } else if (FirmwareModuleType.XML_2_CCP.equals(firmwareModuleType)) {
+                moduleVersionXml2ccp = firmwareModuleTypeString;
+            } else if (FirmwareModuleType.LIBMMSLITE.equals(firmwareModuleType)) {
+                moduleVersionLibmmslite = firmwareModuleTypeString;
+            } else if (FirmwareModuleType.EKORCCP.equals(firmwareModuleType)) {
+                moduleVersionEkorccp = firmwareModuleTypeString;
+            } else if (FirmwareModuleType.DIMXCCP.equals(firmwareModuleType)) {
+                moduleVersionDimxccp = firmwareModuleTypeString;
+            } else if (FirmwareModuleType.RTUSCHEMAS.equals(firmwareModuleType)) {
+                moduleVersionRtuschemas = firmwareModuleTypeString;
+            } else if (FirmwareModuleType.LOCALTIME.equals(firmwareModuleType)) {
+                moduleVersionLocaltime = firmwareModuleTypeString;
+            } else if (FirmwareModuleType.LIBXSDSET.equals(firmwareModuleType)) {
+                moduleVersionLibxsdset = firmwareModuleTypeString;
+            } else if (FirmwareModuleType.FREEDISK.equals(firmwareModuleType)) {
+                moduleVersionFreedisk = firmwareModuleTypeString;
+            } else if (FirmwareModuleType.EKORRTUWS.equals(firmwareModuleType)) {
+                moduleVersionEkorrtuws = firmwareModuleTypeString;
+            } else if (FirmwareModuleType.EKORWEB.equals(firmwareModuleType)) {
+                moduleVersionEkorWeb = firmwareModuleTypeString;
+            } else if (FirmwareModuleType.CCPC.equals(firmwareModuleType)) {
+                moduleVersionCcpC = firmwareModuleTypeString;
+            // ARM version modules
+            } else if (FirmwareModuleType.DARMCCP.equals(firmwareModuleType)) {
+            	moduleVersionDarmccp = firmwareModuleTypeString;
+            } else if (FirmwareModuleType.EXPECT.equals(firmwareModuleType)) {
+            	moduleVersionExpect = firmwareModuleTypeString;
+            } else if (FirmwareModuleType.OPENSSH.equals(firmwareModuleType)) {
+            	moduleVersionOpenssh = firmwareModuleTypeString;
+            } else if (FirmwareModuleType.OPENSSL.equals(firmwareModuleType)) {
+            	moduleVersionOpenssl = firmwareModuleTypeString;
+            } else if (FirmwareModuleType.PROFTPD.equals(firmwareModuleType)) {
+            	moduleVersionProftpd = firmwareModuleTypeString;
+            } else if (FirmwareModuleType.TCPDUMP.equals(firmwareModuleType)) {
+            	moduleVersionTcpdump = firmwareModuleTypeString;
             }
         }
 
         final FirmwareModuleData firmwareModuleData = new FirmwareModuleData(moduleVersionComm, moduleVersionFunc,
-                moduleVersionMa, moduleVersionMbus, moduleVersionSec, moduleVersionMBusDriverActive);
+                moduleVersionMa, moduleVersionMbus, moduleVersionSec, moduleVersionMBusDriverActive, moduleVersionXmlInt,
+                moduleVersionXml2ccp, moduleVersionLibmmslite, moduleVersionEkorccp, moduleVersionDimxccp, moduleVersionRtuschemas,
+                moduleVersionLocaltime, moduleVersionLibxsdset, moduleVersionFreedisk, moduleVersionEkorrtuws, moduleVersionEkorWeb,
+                moduleVersionCcpC, moduleVersionDarmccp, moduleVersionExpect, moduleVersionOpenssh, moduleVersionOpenssl,
+                moduleVersionProftpd, moduleVersionTcpdump);
 
         return new FirmwareUpdateMessageDataContainer(firmwareModuleData, firmwareIndentification);
     }

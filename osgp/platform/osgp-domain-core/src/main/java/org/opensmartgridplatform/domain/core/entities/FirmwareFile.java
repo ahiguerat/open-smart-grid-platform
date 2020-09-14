@@ -205,6 +205,17 @@ public class FirmwareFile extends AbstractEntity {
     public boolean getPushToNewDevices() {
         return this.pushToNewDevices;
     }
+    
+    public String getModuleVersion(String moduleDescription) {
+    	final Map<FirmwareModule, String> moduleVersions = this.getModuleVersions();
+        for (final Entry<FirmwareModule, String> moduleVersion : moduleVersions.entrySet()) {
+            final FirmwareModule firmwareModule = moduleVersion.getKey();
+            if (moduleDescription.equals(firmwareModule.getDescription())) {
+                return moduleVersion.getValue();
+            }
+        }
+        return null;
+    }
 
     /**
      * @deprecated Different types of modules can vary over time when new types

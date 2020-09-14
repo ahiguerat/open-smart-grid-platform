@@ -16,6 +16,11 @@ import org.opensmartgridplatform.adapter.ws.admin.application.mapping.DeviceMana
 import org.opensmartgridplatform.adapter.ws.admin.application.services.DeviceManagementService;
 import org.opensmartgridplatform.adapter.ws.admin.application.valueobjects.WsMessageLogFilter;
 import org.opensmartgridplatform.adapter.ws.endpointinterceptors.OrganisationIdentification;
+import org.opensmartgridplatform.adapter.ws.schema.admin.common.AsyncResponse;
+import org.opensmartgridplatform.adapter.ws.schema.admin.devicemanagement.ActivateDeviceAsyncRequest;
+import org.opensmartgridplatform.adapter.ws.schema.admin.devicemanagement.ActivateDeviceAsyncResponse;
+import org.opensmartgridplatform.adapter.ws.schema.admin.devicemanagement.ActivateDeviceRequest;
+import org.opensmartgridplatform.adapter.ws.schema.admin.devicemanagement.ActivateDeviceResponse;
 import org.opensmartgridplatform.adapter.ws.schema.admin.devicemanagement.ActivateOrganisationRequest;
 import org.opensmartgridplatform.adapter.ws.schema.admin.devicemanagement.ActivateOrganisationResponse;
 import org.opensmartgridplatform.adapter.ws.schema.admin.devicemanagement.ChangeOrganisationRequest;
@@ -48,6 +53,9 @@ import org.opensmartgridplatform.adapter.ws.schema.admin.devicemanagement.Update
 import org.opensmartgridplatform.adapter.ws.schema.admin.devicemanagement.UpdateDeviceProtocolResponse;
 import org.opensmartgridplatform.adapter.ws.schema.admin.devicemanagement.UpdateKeyRequest;
 import org.opensmartgridplatform.adapter.ws.schema.admin.devicemanagement.UpdateKeyResponse;
+import org.opensmartgridplatform.adapter.ws.schema.admin.common.OsgpResultType;
+import org.opensmartgridplatform.adapter.ws.schema.core.firmwaremanagement.UpdateFirmwareAsyncRequest;
+import org.opensmartgridplatform.adapter.ws.schema.core.firmwaremanagement.UpdateFirmwareResponse;
 import org.opensmartgridplatform.adapter.ws.schema.core.notification.NotificationType;
 import org.opensmartgridplatform.adapter.ws.shared.services.NotificationService;
 import org.opensmartgridplatform.domain.core.entities.Organisation;
@@ -61,6 +69,8 @@ import org.opensmartgridplatform.shared.exceptionhandling.FunctionalException;
 import org.opensmartgridplatform.shared.exceptionhandling.FunctionalExceptionType;
 import org.opensmartgridplatform.shared.exceptionhandling.OsgpException;
 import org.opensmartgridplatform.shared.exceptionhandling.TechnicalException;
+import org.opensmartgridplatform.shared.infra.jms.ResponseMessage;
+import org.opensmartgridplatform.shared.infra.jms.ResponseMessageResultType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -486,7 +496,7 @@ public class DeviceManagementEndpoint {
 
         return new UpdateDeviceProtocolResponse();
     }
-
+    
     private void handleException(final Exception e) throws OsgpException {
         // Rethrow exception if it already is a functional or technical
         // exception,

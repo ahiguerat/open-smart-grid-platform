@@ -35,6 +35,7 @@ import org.opensmartgridplatform.domain.core.repositories.DeviceAuthorizationRep
 import org.opensmartgridplatform.domain.core.repositories.DeviceRepository;
 import org.opensmartgridplatform.domain.core.repositories.EventRepository;
 import org.opensmartgridplatform.domain.core.repositories.OrganisationRepository;
+import org.opensmartgridplatform.domain.core.repositories.OrmRtuDeviceRepository;
 import org.opensmartgridplatform.domain.core.repositories.ProtocolInfoRepository;
 import org.opensmartgridplatform.domain.core.services.DeviceDomainService;
 import org.opensmartgridplatform.domain.core.services.OrganisationDomainService;
@@ -113,6 +114,9 @@ public class DeviceManagementService {
 
     @Autowired
     private ProtocolInfoRepository protocolRepository;
+    
+    @Autowired
+    private OrmRtuDeviceRepository ormRtuDeviceRepository;
 
     /**
      * Constructor
@@ -382,6 +386,9 @@ public class DeviceManagementService {
         for (final Event event : events) {
             this.eventRepository.delete(event);
         }
+        
+        //Remove positions and rtudevice
+        this.ormRtuDeviceRepository.deleteByDeviceIdentification(deviceIdentification);
 
         // Then remove the device.
         this.deviceRepository.delete(device);
@@ -598,5 +605,19 @@ public class DeviceManagementService {
         }
 
     }
+    
+    public String activateDevice(final String organisationIdentification,
+            @Identification final String deviceIdentification, final String ipAddress) {
+
+		final String correlationUid = this.correlationIdProviderService.getCorrelationId(organisationIdentification,
+				deviceIdentification);
+		
+		final AdminRequestMessage message = new AdminRequestMessage(MessageType.ACTIVATE_DEVICE, correlationUid,
+				organisationIdentification, deviceIdentification, ipAddress);
+		
+		this.adminRequestMessageSender.send(message);
+
+		return correlationUid;
+	}
 
 }

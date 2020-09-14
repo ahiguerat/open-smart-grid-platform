@@ -17,8 +17,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.opensmartgridplatform.adapter.ws.schema.core.firmwaremanagement.Firmware;
-import org.opensmartgridplatform.adapter.ws.schema.core.firmwaremanagement.FirmwareModuleData;
 import org.opensmartgridplatform.domain.core.entities.DeviceModel;
+import org.opensmartgridplatform.domain.core.valueobjects.FirmwareModuleData;
 
 import ma.glasnost.orika.CustomConverter;
 import ma.glasnost.orika.MappingContext;
@@ -59,12 +59,33 @@ class FirmwareConverter extends CustomConverter<org.opensmartgridplatform.domain
         output.setPushToNewDevices(source.getPushToNewDevices());
         output.setManufacturer(deviceModel.getManufacturer().getCode());
 
-        final FirmwareModuleData firmwareModuleData = new FirmwareModuleData();
+        final org.opensmartgridplatform.adapter.ws.schema.core.firmwaremanagement.FirmwareModuleData firmwareModuleData = new org.opensmartgridplatform.adapter.ws.schema.core.firmwaremanagement.FirmwareModuleData();
         firmwareModuleData.setModuleVersionComm(source.getModuleVersionComm());
         firmwareModuleData.setModuleVersionFunc(source.getModuleVersionFunc());
         firmwareModuleData.setModuleVersionMa(source.getModuleVersionMa());
         firmwareModuleData.setModuleVersionMbus(source.getModuleVersionMbus());
         firmwareModuleData.setModuleVersionSec(source.getModuleVersionSec());
+        
+        firmwareModuleData.setModuleVersionXmllint(source.getModuleVersion(FirmwareModuleData.MODULE_DESCRIPTION_XMLINT));
+        firmwareModuleData.setModuleVersionXml2Ccp(source.getModuleVersion(FirmwareModuleData.MODULE_DESCRIPTION_XML2CCP));
+        firmwareModuleData.setModuleVersionLibmmslite(source.getModuleVersion(FirmwareModuleData.MODULE_DESCRIPTION_LIBMMSLITE));
+        firmwareModuleData.setModuleVersionEkorccp(source.getModuleVersion(FirmwareModuleData.MODULE_DESCRIPTION_EKORCCP));
+        firmwareModuleData.setModuleVersionDimxccp(source.getModuleVersion(FirmwareModuleData.MODULE_DESCRIPTION_DIMXCCP));
+        firmwareModuleData.setModuleVersionRtuschemas(source.getModuleVersion(FirmwareModuleData.MODULE_DESCRIPTION_RTUSCHEMAS));
+        firmwareModuleData.setModuleVersionLocaltime(source.getModuleVersion(FirmwareModuleData.MODULE_DESCRIPTION_LOCALTIME));
+        firmwareModuleData.setModuleVersionLibxsdset(source.getModuleVersion(FirmwareModuleData.MODULE_DESCRIPTION_LIBXSDSET));
+        firmwareModuleData.setModuleVersionFreedisk(source.getModuleVersion(FirmwareModuleData.MODULE_DESCRIPTION_FREEDISK));
+        firmwareModuleData.setModuleVersionEkorrtuws(source.getModuleVersion(FirmwareModuleData.MODULE_DESCRIPTION_EKORRTUWS));
+        firmwareModuleData.setModuleVersionEkorWeb(source.getModuleVersion(FirmwareModuleData.MODULE_DESCRIPTION_EKORWEB));
+        firmwareModuleData.setModuleVersionCcpC(source.getModuleVersion(FirmwareModuleData.MODULE_DESCRIPTION_CCPC));
+        
+        firmwareModuleData.setModuleVersionDarmccp(source.getModuleVersion(FirmwareModuleData.MODULE_DESCRIPTION_DARMCCP));
+        firmwareModuleData.setModuleVersionExpect(source.getModuleVersion(FirmwareModuleData.MODULE_DESCRIPTION_EXPECT));
+        firmwareModuleData.setModuleVersionOpenssh(source.getModuleVersion(FirmwareModuleData.MODULE_DESCRIPTION_OPENSSH));
+        firmwareModuleData.setModuleVersionOpenssl(source.getModuleVersion(FirmwareModuleData.MODULE_DESCRIPTION_OPENSSL));
+        firmwareModuleData.setModuleVersionProftpd(source.getModuleVersion(FirmwareModuleData.MODULE_DESCRIPTION_PROFTPD));
+        firmwareModuleData.setModuleVersionTcpdump(source.getModuleVersion(FirmwareModuleData.MODULE_DESCRIPTION_TCPDUMP));
+        
         output.setFirmwareModuleData(firmwareModuleData);
 
         final GregorianCalendar gCalendar = new GregorianCalendar();

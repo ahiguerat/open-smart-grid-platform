@@ -71,6 +71,10 @@ public class Event extends AbstractEntity {
     public String getDescription() {
         return this.description;
     }
+    
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     public Integer getIndex() {
         return this.index;
@@ -86,14 +90,7 @@ public class Event extends AbstractEntity {
         }
         final Event other = (Event) o;
 
-        final boolean[] booleans = new boolean[5];
-        booleans[0] = Objects.equals(this.device, other.device);
-        booleans[1] = Objects.equals(this.dateTime, other.dateTime);
-        booleans[2] = Objects.equals(this.eventType, other.eventType);
-        booleans[3] = Objects.equals(this.description, other.description);
-        booleans[4] = Objects.equals(this.index, other.index);
-
-        return BooleanUtils.and(booleans);
+        return isDeviceEqual && isDateTimeEqual && isEventTypeEqual && isDescriptionEqual && isIndexEqual;
     }
 
     @Override

@@ -47,7 +47,7 @@ public class CommonDefaultResponseMessageProcessor extends BaseMessageProcessor 
             @Qualifier("domainCoreOutboundWebServiceResponsesMessageSender") final WebServiceResponseMessageSender responseMessageSender,
             @Qualifier("domainCoreInboundOsgpCoreResponsesMessageProcessorMap") final MessageProcessorMap messageProcessorMap) {
         super(responseMessageSender, messageProcessorMap, MessageType.SET_CONFIGURATION, ComponentType.DOMAIN_CORE);
-        this.addMessageType(MessageType.UPDATE_FIRMWARE);
+//        this.addMessageType(MessageType.UPDATE_FIRMWARE);
         this.addMessageType(MessageType.SET_REBOOT);
         this.addMessageType(MessageType.SET_EVENT_NOTIFICATIONS);
         this.addMessageType(MessageType.START_SELF_TEST);

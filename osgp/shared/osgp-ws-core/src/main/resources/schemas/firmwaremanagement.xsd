@@ -572,6 +572,44 @@
         minOccurs="0" />
       <xsd:element name="ModuleVersionMBusDriverActive" type="xsd:string"
         minOccurs="0" />
+      <!-- RTU modules -->
+      <xsd:element name="ModuleVersionXmllint" type="xsd:string"
+        minOccurs="0" />
+      <xsd:element name="ModuleVersionXml2ccp" type="xsd:string"
+        minOccurs="0" />
+      <xsd:element name="ModuleVersionLibmmslite" type="xsd:string"
+        minOccurs="0" />
+      <xsd:element name="ModuleVersionEkorccp" type="xsd:string"
+        minOccurs="0" />
+      <xsd:element name="ModuleVersionDimxccp" type="xsd:string"
+        minOccurs="0" />
+      <xsd:element name="ModuleVersionRtuschemas" type="xsd:string"
+        minOccurs="0" />
+      <xsd:element name="ModuleVersionLocaltime" type="xsd:string"
+        minOccurs="0" />
+       <xsd:element name="ModuleVersionLibxsdset" type="xsd:string"
+        minOccurs="0" />
+      <xsd:element name="ModuleVersionFreedisk" type="xsd:string"
+        minOccurs="0" />
+      <xsd:element name="ModuleVersionEkorrtuws" type="xsd:string"
+        minOccurs="0" />
+      <xsd:element name="ModuleVersionEkorWeb" type="xsd:string"
+        minOccurs="0" />
+      <xsd:element name="ModuleVersionCcpC" type="xsd:string"
+        minOccurs="0" />
+        
+      <xsd:element name="ModuleVersionDarmccp" type="xsd:string"
+        minOccurs="0" />
+      <xsd:element name="ModuleVersionExpect" type="xsd:string"
+        minOccurs="0" />
+      <xsd:element name="ModuleVersionOpenssh" type="xsd:string"
+        minOccurs="0" />
+      <xsd:element name="ModuleVersionOpenssl" type="xsd:string"
+        minOccurs="0" />
+      <xsd:element name="ModuleVersionProftpd" type="xsd:string"
+        minOccurs="0" />
+      <xsd:element name="ModuleVersionTcpdump" type="xsd:string"
+        minOccurs="0" />      
     </xsd:sequence>
   </xsd:complexType>
 
@@ -584,6 +622,26 @@
       <xsd:enumeration value="MODULE_ACTIVE" />
       <xsd:enumeration value="ACTIVE_FIRMWARE" />
       <xsd:enumeration value="M_BUS_DRIVER_ACTIVE" />
+      
+      <xsd:enumeration value="XMLINT" />
+      <xsd:enumeration value="XML2CCP" />
+      <xsd:enumeration value="LIBMMSLITE" />
+      <xsd:enumeration value="EKORCCP" />
+      <xsd:enumeration value="DIMXCCP" />
+      <xsd:enumeration value="RTUSCHEMAS" />
+      <xsd:enumeration value="LOCALTIME" />
+      <xsd:enumeration value="LIBXSDSET" />
+      <xsd:enumeration value="FREEDISK" />
+      <xsd:enumeration value="EKORRTUWS" />
+      <xsd:enumeration value="EKORWEB" />
+      <xsd:enumeration value="CCPC" />
+      
+      <xsd:enumeration value="DARMCCP" />
+      <xsd:enumeration value="EXPECT" />
+      <xsd:enumeration value="OPENSSH" />
+      <xsd:enumeration value="OPENSSL" />
+      <xsd:enumeration value="PROFTPD" />
+      <xsd:enumeration value="TCPDUMP" />
     </xsd:restriction>
   </xsd:simpleType>
 
