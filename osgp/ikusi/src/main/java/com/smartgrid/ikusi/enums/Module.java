@@ -1,0 +1,24 @@
+package com.smartgrid.ikusi.enums;
+
+public enum Module {	
+	
+	XMLLINT,
+	XML2CCP,
+	LIBMMSLITE,
+	EKORCCP,
+	DIMXCCP,
+	RTUSCHEMAS,
+	LOCALTIME,
+	LIBXSDSET,
+	FREEDISK,
+	EKORRTUWS,
+	EKORWEB,
+	CCPC,
+	DARMCCP,
+	EXPECT,
+	OPENSSH,
+	OPENSSL,
+	PROFTPD,
+	TCPDUMP;
+	
+}
