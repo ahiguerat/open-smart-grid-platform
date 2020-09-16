@@ -1,0 +1,33 @@
+<xs:schema version="1.0" targetNamespace="http://rtu.ws.es.ormazabal.www/" xmlns:tns="http://rtu.ws.es.ormazabal.www/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <xs:element name="Fault" type="tns:Fault"/>
+   <xs:element name="UpdateSoft" type="tns:UpdateSoft"/>
+   <xs:element name="UpdateSoftResponse" type="tns:UpdateSoftResponse"/>
+   <xs:complexType name="UpdateSoft">
+      <xs:sequence>
+         <xs:element name="xmlwsinput" type="tns:xmlwsInput" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="xmlwsInput">
+      <xs:sequence>
+         <xs:element name="commoninput" type="xs:string" minOccurs="0"/>
+         <xs:element name="xmlinput" type="xs:string" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="UpdateSoftResponse">
+      <xs:sequence>
+         <xs:element name="return" type="tns:xmlwsOutput" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="xmlwsOutput">
+      <xs:sequence>
+         <xs:element name="commonoutput" type="xs:string" minOccurs="0"/>
+         <xs:element name="xmloutput" type="xs:string" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="Fault">
+      <xs:sequence>
+         <xs:element name="code" type="xs:string" minOccurs="0"/>
+         <xs:element name="message" type="xs:string" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+</xs:schema>

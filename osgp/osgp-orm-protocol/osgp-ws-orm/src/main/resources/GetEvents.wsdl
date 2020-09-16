@@ -1,0 +1,43 @@
+<definitions targetNamespace="http://rtu.ws.es.ormazabal.www/" name="GetEventsService" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://rtu.ws.es.ormazabal.www/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/wsdl/">
+   <types>
+      <xsd:schema>
+         <xsd:import namespace="http://rtu.ws.es.ormazabal.www/" schemaLocation="schemas/GetEvents.xsd"/>
+      </xsd:schema>
+   </types>
+   <message name="GetEvents">
+      <part name="parameters" element="tns:GetEvents"/>
+   </message>
+   <message name="GetEventsResponse">
+      <part name="parameters" element="tns:GetEventsResponse"/>
+   </message>
+   <message name="Fault">
+      <part name="fault" element="tns:Fault"/>
+   </message>
+   <portType name="GetEvents">
+      <operation name="GetEvents">
+         <input message="tns:GetEvents"/>
+         <output message="tns:GetEventsResponse"/>
+         <fault message="tns:Fault" name="Fault"/>
+      </operation>
+   </portType>
+   <binding name="GetEventsPortBinding12" type="tns:GetEvents">
+      <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+      <operation name="GetEvents">
+         <soap12:operation soapAction="" soapActionRequired="false"/>
+         <input>
+            <soap12:body use="literal"/>
+         </input>
+         <output>
+            <soap12:body use="literal"/>
+         </output>
+         <fault name="Fault">
+            <soap12:fault name="Fault" use="literal"/>
+         </fault>
+      </operation>
+   </binding>
+   <service name="GetEventsService">
+      <port name="GetEventsPort12" binding="tns:GetEventsPortBinding12">
+         <soap12:address location="http://localhost:8084/wsrtu/GetEvents"/>
+      </port>
+   </service>
+</definitions>
