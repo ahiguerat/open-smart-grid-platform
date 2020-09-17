@@ -19,8 +19,6 @@ import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 
 import org.apache.commons.lang3.ArrayUtils;
-import org.apache.commons.lang3.BooleanUtils;
-import org.opensmartgridplatform.oslp.Oslp.Message;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -49,12 +47,11 @@ public final class OslpUtils {
     public static final String FALLBACK_DIGEST = "SHA-512";
 
     /**
-     * List of signature types which do not allow trailing data and need to be
-     * truncated.
+     * List of signature types which do not allow trailing data and need to be truncated.
      */
     private static final String[] TRUNCATE_SIGNATURES = { "NONEwithECDSA", "SHA1withECDSA", "SHA256withECDSA",
             "SHA384withECDSA", "SHA512withECDSA" };
-
+    
     private OslpUtils() {
         // Empty constructor for static helper class.
     }
@@ -168,57 +165,21 @@ public final class OslpUtils {
         final Signature signatureBuilder = Signature.getInstance(signature, provider);
         signatureBuilder.initVerify(publicKey);
         signatureBuilder.update(message);
-
+        
         int signatureLength = securityKey.length;
-
+        
         if (ArrayUtils.contains(TRUNCATE_SIGNATURES, signature)) {
             // Fix for https://bugs.openjdk.java.net/browse/JDK-8161571
-            // Read 2nd byte as length indicator for the actual signature bytes,
-            // include 2 bytes for 1st 2 bytes
-            // Ensure the byte (which is signed) is converted correctly to a
-            // positive int
-            signatureLength = securityKey[1] + 2 & 0xFF;
+            // Read 2nd byte as length indicator for the actual signature bytes, include 2 bytes for 1st 2 bytes
+            // Ensure the byte (which is signed) is converted correctly to a positive int
+            signatureLength = securityKey[1]+2 & 0xFF;
             if (signatureLength > securityKey.length) {
-                throw new GeneralSecurityException(
-                        "Size indicator in ASN.1 DSA signature to large [" + signatureLength + "]");
+                throw new GeneralSecurityException("Size indicator in ASN.1 DSA signature to large [" + signatureLength + "]");
             }
         }
         // Truncate the string to actual ASN.1 DSA length, removing padding
-        final byte[] truncated = Arrays.copyOf(securityKey, signatureLength);
+        byte[] truncated = Arrays.copyOf(securityKey, signatureLength);
         return signatureBuilder.verify(truncated);
-    }
-
-    public static boolean isOslpResponse(final OslpEnvelope envelope) {
-
-        final Message message = envelope.getPayloadMessage();
-
-        // @formatter:off
-        final boolean[] hasResponse = {
-                message.hasRegisterDeviceResponse(),
-                message.hasConfirmRegisterDeviceResponse(),
-                message.hasStartSelfTestResponse(),
-                message.hasStopSelfTestResponse(),
-                message.hasUpdateFirmwareResponse(),
-                message.hasSetLightResponse(),
-                message.hasSetEventNotificationsResponse(),
-                message.hasEventNotificationResponse(),
-                message.hasSetScheduleResponse(),
-                message.hasGetFirmwareVersionResponse(),
-                message.hasGetStatusResponse(),
-                message.hasResumeScheduleResponse(),
-                message.hasSetRebootResponse(),
-                message.hasSetTransitionResponse(),
-                message.hasSetConfigurationResponse(),
-                message.hasGetConfigurationResponse(),
-                message.hasSwitchConfigurationResponse(),
-                message.hasGetActualPowerUsageResponse(),
-                message.hasGetPowerUsageHistoryResponse(),
-                message.hasSwitchFirmwareResponse(),
-                message.hasUpdateDeviceSslCertificationResponse(),
-                message.hasSetDeviceVerificationKeyResponse() };
-        // @formatter:on
-
-        return BooleanUtils.or(hasResponse);
     }
 
     private static byte[] createEncryptedHash(final byte[] message, final PrivateKey privateKey)

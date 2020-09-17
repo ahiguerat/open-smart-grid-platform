@@ -13,8 +13,8 @@
   <parent>
     <groupId>org.opensmartgridplatform</groupId>
     <artifactId>parent-shared</artifactId>
-    <version>4.39.0-SNAPSHOT</version>
-    <relativePath>../parent-shared/pom.xml</relativePath>
+    <version>5.3.0-SNAPSHOT</version>
+    <relativePath>../../parent-shared/pom.xml</relativePath>
   </parent>
 
   <artifactId>osgp-ws-orm</artifactId>

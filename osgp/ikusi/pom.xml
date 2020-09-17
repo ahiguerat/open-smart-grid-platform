@@ -164,19 +164,19 @@
 		<dependency>
 			<groupId>org.opensmartgridplatform</groupId>
 			<artifactId>osgp-ws-core</artifactId>
-			<version>4.39.0-SNAPSHOT</version>
+			<version>4.3.0-SNAPSHOT</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.opensmartgridplatform</groupId>
 			<artifactId>osgp-ws-admin</artifactId>
-			<version>4.39.0-SNAPSHOT</version>
+			<version>4.3.0-SNAPSHOT</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.opensmartgridplatform</groupId>
 			<artifactId>osgp-ws-publiclighting</artifactId>
-			<version>4.39.0-SNAPSHOT</version>
+			<version>4.3.0-SNAPSHOT</version>
 		</dependency>
 
 		<!-- <dependency> -->
@@ -194,7 +194,7 @@
 		<dependency>
 			<groupId>org.opensmartgridplatform</groupId>
 			<artifactId>osgp-dto</artifactId>
-			<version>4.39.0-SNAPSHOT</version>
+			<version>4.3.0-SNAPSHOT</version>
 		</dependency>
 
 		<dependency>

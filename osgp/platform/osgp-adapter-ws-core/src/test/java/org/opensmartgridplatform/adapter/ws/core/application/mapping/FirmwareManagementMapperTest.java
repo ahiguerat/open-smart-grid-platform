@@ -21,7 +21,13 @@ public class FirmwareManagementMapperTest {
             final org.opensmartgridplatform.adapter.ws.schema.core.firmwaremanagement.FirmwareModuleData source) {
         return new FirmwareModuleData(source.getModuleVersionComm(), source.getModuleVersionFunc(),
                 source.getModuleVersionMa(), source.getModuleVersionMbus(), source.getModuleVersionSec(),
-                source.getModuleVersionMBusDriverActive());
+                source.getModuleVersionMBusDriverActive(),source.getModuleVersionXmllint(),
+                source.getModuleVersionXml2Ccp(), source.getModuleVersionLibmmslite(),source.getModuleVersionEkorccp(),
+                source.getModuleVersionDimxccp(), source.getModuleVersionRtuschemas(), source.getModuleVersionLocaltime(),
+                source.getModuleVersionLibxsdset(), source.getModuleVersionFreedisk(),source.getModuleVersionEkorrtuws(),
+                source.getModuleVersionEkorWeb(), source.getModuleVersionCcpC(), source.getModuleVersionDarmccp(),
+                source.getModuleVersionExpect(), source.getModuleVersionOpenssh(), source.getModuleVersionOpenssl(),
+                source.getModuleVersionProftpd(), source.getModuleVersionTcpdump());
     }
 
     @Test

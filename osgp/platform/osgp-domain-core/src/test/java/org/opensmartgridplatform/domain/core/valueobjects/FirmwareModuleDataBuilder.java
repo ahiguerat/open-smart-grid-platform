@@ -17,6 +17,24 @@ public class FirmwareModuleDataBuilder {
                 "moduleVersionMa" + counter,
                 "moduleVersionMbus" + counter,
                 "moduleVersionSec" + counter,
-                "moduleVersionMBusDriverActive" + counter);
+                "moduleVersionMBusDriverActive" + counter,
+                "moduleVersionXmllint" + counter,
+                "moduleVersionXml2ccp" + counter,
+                "moduleVersionLibmmslite" + counter,
+                "moduleVersionEkorccp" + counter,
+                "moduleVersionDimxccp" + counter,
+                "moduleVersionRtuschemas" + counter,
+                "moduleVersionLocaltime" + counter,
+                "moduleVersionLibxsdset" + counter,
+                "moduleVersionFreedisk" + counter,
+                "moduleVersionEkorrtuws" + counter,
+                "moduleVersionEkorWeb" + counter,
+                "moduleVersionCcpC" + counter,
+        		"moduleVersionDarmccp" + counter,
+				"moduleVersionExpect" + counter,
+				"moduleVersionOpenssh" + counter,
+				"moduleVersionOpenssl" + counter,
+				"moduleVersionProftpd" + counter,
+				"moduleVersionTcpdump" + counter);
     }
 }
