@@ -20,6 +20,7 @@ import org.opensmartgridplatform.domain.core.entities.FirmwareFile;
 @Repository
 public interface WritableFirmwareFileRepository extends JpaRepository<FirmwareFile, Long> {
 
+	FirmwareFile findTopByFilenameOrderByIdDesc(String filename);
     @Query("SELECT ff FROM FirmwareFile ff WHERE :deviceModel MEMBER OF ff.deviceModels")
     List<FirmwareFile> findByDeviceModel(@Param("deviceModel") DeviceModel deviceModel);
 

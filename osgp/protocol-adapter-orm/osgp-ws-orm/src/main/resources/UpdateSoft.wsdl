@@ -1,0 +1,43 @@
+<definitions targetNamespace="http://rtu.ws.es.ormazabal.www/" name="UpdateSoftService" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://rtu.ws.es.ormazabal.www/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/wsdl/">
+   <types>
+      <xsd:schema>
+         <xsd:import namespace="http://rtu.ws.es.ormazabal.www/" schemaLocation="schemas/updatesoft.xsd"/>
+      </xsd:schema>
+   </types>
+   <message name="UpdateSoft">
+      <part name="parameters" element="tns:UpdateSoft"/>
+   </message>
+   <message name="UpdateSoftResponse">
+      <part name="parameters" element="tns:UpdateSoftResponse"/>
+   </message>
+   <message name="Fault">
+      <part name="fault" element="tns:Fault"/>
+   </message>
+   <portType name="UpdateSoft">
+      <operation name="UpdateSoft">
+         <input message="tns:UpdateSoft"/>
+         <output message="tns:UpdateSoftResponse"/>
+         <fault message="tns:Fault" name="Fault"/>
+      </operation>
+   </portType>
+   <binding name="UpdateSoftPortBinding12" type="tns:UpdateSoft">
+      <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+      <operation name="UpdateSoft">
+         <soap12:operation soapAction="" soapActionRequired="false"/>
+         <input>
+            <soap12:body use="literal"/>
+         </input>
+         <output>
+            <soap12:body use="literal"/>
+         </output>
+         <fault name="Fault">
+            <soap12:fault name="Fault" use="literal"/>
+         </fault>
+      </operation>
+   </binding>
+   <service name="UpdateSoftService">
+      <port name="UpdateSoftPort12" binding="tns:UpdateSoftPortBinding12">
+         <soap12:address location="http://localhost:8084/wsrtu/UpdateSoft"/>
+      </port>
+   </service>
+</definitions>

@@ -268,11 +268,6 @@
       </dependency>
       <dependency>
         <groupId>org.opensmartgridplatform</groupId>
-        <artifactId>osgp-core-db-api</artifactId>
-        <version>${osgp.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.opensmartgridplatform</groupId>
         <artifactId>osgp-protocol-adapter-oslp-elster</artifactId>
         <version>${osgp.version}</version>
         <classifier>classes</classifier>
@@ -288,6 +283,32 @@
         <artifactId>oslp</artifactId>
         <version>${osgp.version}</version>
       </dependency>
+      
+      
+      <dependency>
+        <groupId>org.opensmartgridplatform</groupId>
+        <artifactId>osgp-core-db-api</artifactId>
+        <version>${osgp.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.opensmartgridplatform</groupId>
+        <artifactId>osgp-protocol-adapter-orm</artifactId>
+        <version>${osgp.version}</version>
+        <classifier>classes</classifier>
+      </dependency>
+      <dependency>
+        <groupId>org.opensmartgridplatform</groupId>
+        <artifactId>osgp-ws-orm</artifactId>
+        <version>${osgp.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.opensmartgridplatform</groupId>
+        <artifactId>orm</artifactId>
+        <version>${osgp.version}</version>
+      </dependency>  
+      
+      
+      
       <dependency>
         <groupId>org.opensmartgridplatform</groupId>
         <artifactId>osgp-iec61850</artifactId>
@@ -298,6 +319,7 @@
         <artifactId>osgp-core-db-api-iec61850</artifactId>
         <version>${osgp.version}</version>
       </dependency>
+      
       <dependency>
         <groupId>org.opensmartgridplatform</groupId>
         <artifactId>cucumber-tests-core</artifactId>
