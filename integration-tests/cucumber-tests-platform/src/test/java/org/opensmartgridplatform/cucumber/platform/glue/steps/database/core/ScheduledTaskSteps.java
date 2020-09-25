@@ -64,7 +64,8 @@ public class ScheduledTaskSteps extends BaseDeviceSteps {
                 .getMillis();
         final DeviceMessageMetadata deviceMessageMetadata = new DeviceMessageMetadata(deviceIdentification,
                 organisationIdentification, correlationUid, messageType, messagePriority, scheduleTime);
-        final FirmwareModuleData firmwareModuleData = new FirmwareModuleData(null, "FW-01", null, null, null, null);
+        final FirmwareModuleData firmwareModuleData = new FirmwareModuleData(null, "FW-01", null, null, null, null, null, null,
+                null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
         final String firmwareUrl = "firmware-url";
         final Serializable messageData = new FirmwareUpdateMessageDataContainer(firmwareModuleData, firmwareUrl);
         return new ScheduledTask(deviceMessageMetadata, "CORE", "1.0", messageData, new Timestamp(scheduleTime));

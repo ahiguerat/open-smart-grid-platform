@@ -28,7 +28,30 @@ public class FirmwareFileBuilder implements CucumberBuilder<FirmwareFile> {
     private String moduleVersionMbus = PlatformDefaults.FIRMWARE_MODULE_VERSION_MBUS;
     private String moduleVersionSec = PlatformDefaults.FIRMWARE_MODULE_VERSION_SEC;
     private String moduleVersionMBusDriverActive = PlatformDefaults.FIRMWARE_MODULE_VERSION_M_BUS_DRIVER_ACTIVE;
-    private byte file[];
+
+    
+    // RTU modules
+    private String moduleVersionXmlInt = PlatformDefaults.FIRMWARE_MODULE_VERSION_XMLINT;
+    private String moduleVersionXml2ccp = PlatformDefaults.FIRMWARE_MODULE_VERSION_XML2CCP;
+    private String moduleVersionLibmmslite = PlatformDefaults.FIRMWARE_MODULE_VERSION_LIBMMSLITE;
+    private String moduleVersionEkorccp = PlatformDefaults.FIRMWARE_MODULE_VERSION_EKORCCP;
+    private String moduleVersionDimxccp = PlatformDefaults.FIRMWARE_MODULE_VERSION_DIMXCCP;
+    private String moduleVersionRtuschemas = PlatformDefaults.FIRMWARE_MODULE_VERSION_RTUSCHEMAS;
+    private String moduleVersionLocaltime = PlatformDefaults.FIRMWARE_MODULE_VERSION_LOCALTIME;
+    private String moduleVersionLibxsdset = PlatformDefaults.FIRMWARE_MODULE_VERSION_LIBXSDSET;
+    private String moduleVersionFreedisk = PlatformDefaults.FIRMWARE_MODULE_VERSION_FREEDISK;
+    private String moduleVersionEkorrtuws = PlatformDefaults.FIRMWARE_MODULE_VERSION_EKORRTUWS;
+    private String moduleVersionEkorWeb = PlatformDefaults.FIRMWARE_MODULE_VERSION_EKORWEB;
+    private String moduleVersionCcpC = PlatformDefaults.FIRMWARE_MODULE_VERSION_CCPC;
+
+    private String moduleVersionDarmccp = PlatformDefaults.FIRMWARE_MODULE_VERSION_DARMCCP;
+    private String moduleVersionExpect = PlatformDefaults.FIRMWARE_MODULE_VERSION_EXPECT;
+    private String moduleVersionOpenssh = PlatformDefaults.FIRMWARE_MODULE_VERSION_OPENSSH;
+    private String moduleVersionOpenssl = PlatformDefaults.FIRMWARE_MODULE_VERSION_OPENSSL;
+    private String moduleVersionProftpd = PlatformDefaults.FIRMWARE_MODULE_VERSION_PROFTPD;
+    private String moduleVersionTcpdump = PlatformDefaults.FIRMWARE_MODULE_VERSION_TCPDUMP;
+
+    private byte file[];    
     private String hash;
 
     public FirmwareFileBuilder withDeviceModel(final DeviceModel deviceModel) {
@@ -104,8 +127,12 @@ public class FirmwareFileBuilder implements CucumberBuilder<FirmwareFile> {
             firmwareFile.addDeviceModel(this.deviceModel);
         }
         firmwareFile.updateFirmwareModuleData(new FirmwareModuleData(this.moduleVersionComm, this.moduleVersionFunc,
-                this.moduleVersionMa, this.moduleVersionMbus, this.moduleVersionSec, this.moduleVersionMBusDriverActive)
-                        .getVersionsByModule(firmwareModuleRepository, isForSmartMeters));
+                this.moduleVersionMa, this.moduleVersionMbus, this.moduleVersionSec, this.moduleVersionMBusDriverActive, this.moduleVersionXmlInt, this.moduleVersionXml2ccp, this.moduleVersionLibmmslite,
+                this.moduleVersionEkorccp, this.moduleVersionDimxccp, this.moduleVersionRtuschemas, this.moduleVersionLocaltime,
+                this.moduleVersionLibxsdset, this.moduleVersionFreedisk, this.moduleVersionEkorrtuws, this.moduleVersionEkorWeb, this.moduleVersionCcpC,
+                this.moduleVersionDarmccp, this.moduleVersionExpect, this.moduleVersionOpenssh, this.moduleVersionOpenssl,
+                this.moduleVersionProftpd, this.moduleVersionTcpdump)
+        		           .getVersionsByModule(firmwareModuleRepository, isForSmartMeters));
         return firmwareFile;
     }
 

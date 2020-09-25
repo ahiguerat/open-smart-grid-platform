@@ -94,9 +94,32 @@ public class DeviceFirmwareModuleSteps {
         final String sec = getNullOrNonEmptyString(settings, PlatformKeys.FIRMWARE_MODULE_VERSION_SEC, null);
         final String mBusDriverActive = getNullOrNonEmptyString(settings,
                 PlatformKeys.FIRMWARE_MODULE_VERSION_M_BUS_DRIVER_ACTIVE, null);
+        // RTU modules
+        final String xmllint = getNullOrNonEmptyString(settings, PlatformKeys.FIRMWARE_MODULE_VERSION_XMLINT, null);
+        final String xml2ccp = getNullOrNonEmptyString(settings, PlatformKeys.FIRMWARE_MODULE_VERSION_XML2CCP, null);
+        final String libmmslite = getNullOrNonEmptyString(settings, PlatformKeys.FIRMWARE_MODULE_VERSION_LIBMMSLITE, null);
+        final String ekorccp = getNullOrNonEmptyString(settings, PlatformKeys.FIRMWARE_MODULE_VERSION_EKORCCP, null);
+        final String dimxccp = getNullOrNonEmptyString(settings, PlatformKeys.FIRMWARE_MODULE_VERSION_DIMXCCP, null);
+        final String rtuschemas = getNullOrNonEmptyString(settings, PlatformKeys.FIRMWARE_MODULE_VERSION_RTUSCHEMAS, null);
+        final String localtime = getNullOrNonEmptyString(settings, PlatformKeys.FIRMWARE_MODULE_VERSION_LOCALTIME, null);
+        final String libxsdset = getNullOrNonEmptyString(settings, PlatformKeys.FIRMWARE_MODULE_VERSION_LIBXSDSET, null);
+        final String freedisk = getNullOrNonEmptyString(settings, PlatformKeys.FIRMWARE_MODULE_VERSION_FREEDISK, null);
+        final String ekorrtuws = getNullOrNonEmptyString(settings, PlatformKeys.FIRMWARE_MODULE_VERSION_EKORRTUWS, null);
+        final String ekorWeb = getNullOrNonEmptyString(settings, PlatformKeys.FIRMWARE_MODULE_VERSION_EKORWEB, null);
+        final String ccpC = getNullOrNonEmptyString(settings, PlatformKeys.FIRMWARE_MODULE_VERSION_CCPC, null);
+
+        final String darmccp = getNullOrNonEmptyString(settings, PlatformKeys.FIRMWARE_MODULE_VERSION_DARMCCP, null);
+        final String expect = getNullOrNonEmptyString(settings, PlatformKeys.FIRMWARE_MODULE_VERSION_EXPECT, null);
+        final String openssh = getNullOrNonEmptyString(settings, PlatformKeys.FIRMWARE_MODULE_VERSION_OPENSSH, null);
+        final String openssl = getNullOrNonEmptyString(settings, PlatformKeys.FIRMWARE_MODULE_VERSION_OPENSSL, null);
+        final String proftpd = getNullOrNonEmptyString(settings, PlatformKeys.FIRMWARE_MODULE_VERSION_PROFTPD, null);
+        final String tcpdump = getNullOrNonEmptyString(settings, PlatformKeys.FIRMWARE_MODULE_VERSION_TCPDUMP, null);
+
 
         final FirmwareModuleData firmwareModuleData = new FirmwareModuleData(comm, func, ma, mbus, sec,
-                mBusDriverActive);
+                mBusDriverActive, xmllint, xml2ccp,
+                libmmslite, ekorccp, dimxccp, rtuschemas, localtime, libxsdset, freedisk, ekorrtuws, ekorWeb, ccpC, darmccp,
+                expect, openssh, openssl, proftpd, tcpdump);
         return firmwareModuleData.getVersionsByModule(this.firmwareModuleRepository, isForSmartMeters);
     }
 }

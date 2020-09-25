@@ -173,6 +173,29 @@ public class PlatformDefaults {
     public static final String FIRMWARE_MODULE_VERSION_MBUS = "4";
     public static final String FIRMWARE_MODULE_VERSION_SEC = "5";
     public static final String FIRMWARE_MODULE_VERSION_M_BUS_DRIVER_ACTIVE = "6";
+    
+    // RTU modules
+    public static final String FIRMWARE_MODULE_VERSION_XMLINT = "7";
+    public static final String FIRMWARE_MODULE_VERSION_XML2CCP = "8";
+    public static final String FIRMWARE_MODULE_VERSION_LIBMMSLITE = "9";
+    public static final String FIRMWARE_MODULE_VERSION_EKORCCP = "10";
+    public static final String FIRMWARE_MODULE_VERSION_DIMXCCP = "11";
+    public static final String FIRMWARE_MODULE_VERSION_RTUSCHEMAS = "12";
+    public static final String FIRMWARE_MODULE_VERSION_LOCALTIME = "13";
+    public static final String FIRMWARE_MODULE_VERSION_LIBXSDSET = "14";
+    public static final String FIRMWARE_MODULE_VERSION_FREEDISK = "15";
+    public static final String FIRMWARE_MODULE_VERSION_EKORRTUWS = "16";
+    public static final String FIRMWARE_MODULE_VERSION_EKORWEB = "17";
+    public static final String FIRMWARE_MODULE_VERSION_CCPC = "18";
+
+    public static final String FIRMWARE_MODULE_VERSION_DARMCCP = "18";
+    public static final String FIRMWARE_MODULE_VERSION_EXPECT = "19";
+    public static final String FIRMWARE_MODULE_VERSION_OPENSSH = "20";
+    public static final String FIRMWARE_MODULE_VERSION_OPENSSL = "21";
+    public static final String FIRMWARE_MODULE_VERSION_PROFTPD = "22";
+    public static final String FIRMWARE_MODULE_VERSION_TCPDUMP = "23";
+
+    
     public static final String FIRMWARE_INSTALLED_BY = "Test User";
     public static final String FIRMWARE_INSTALLATION_DATE = "now";
     public static final Boolean FIRMWARE_FILE_EXISTS = true;

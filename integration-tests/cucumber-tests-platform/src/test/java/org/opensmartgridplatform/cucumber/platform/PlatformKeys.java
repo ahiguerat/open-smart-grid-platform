@@ -60,6 +60,29 @@ public class PlatformKeys extends Keys {
     public static final String FIRMWARE_MODULE_VERSION_MBUS = "FirmwareModuleVersionMbus";
     public static final String FIRMWARE_MODULE_VERSION_SEC = "FirmwareModuleVersionSec";
     public static final String FIRMWARE_MODULE_VERSION_M_BUS_DRIVER_ACTIVE = "FirmwareModuleVersionMbda";
+    
+    // RTU modules
+    public static final String FIRMWARE_MODULE_VERSION_XMLINT = "FirmwareModuleVersionXmllint";
+    public static final String FIRMWARE_MODULE_VERSION_XML2CCP = "FirmwareModuleVersionXml2ccp";
+    public static final String FIRMWARE_MODULE_VERSION_LIBMMSLITE = "FirmwareModuleVersionLibmmslite";
+    public static final String FIRMWARE_MODULE_VERSION_EKORCCP = "FirmwareModuleVersionEkorccp";
+    public static final String FIRMWARE_MODULE_VERSION_DIMXCCP = "FirmwareModuleVersionDimxccp";
+    public static final String FIRMWARE_MODULE_VERSION_RTUSCHEMAS = "FirmwareModuleVersionRtuschemas";
+    public static final String FIRMWARE_MODULE_VERSION_LOCALTIME = "FirmwareModuleVersionLocaltime";
+    public static final String FIRMWARE_MODULE_VERSION_LIBXSDSET = "FirmwareModuleVersionLibxsdset";
+    public static final String FIRMWARE_MODULE_VERSION_FREEDISK = "FirmwareModuleVersionFreedisk";
+    public static final String FIRMWARE_MODULE_VERSION_EKORRTUWS = "FirmwareModuleVersionEkorrtuws";
+    public static final String FIRMWARE_MODULE_VERSION_EKORWEB = "FirmwareModuleVersionEkorWeb";
+    public static final String FIRMWARE_MODULE_VERSION_CCPC = "FirmwareModuleVersionCcpC";
+
+    public static final String FIRMWARE_MODULE_VERSION_DARMCCP = "FirmwareModuleVersionDarmpccp";
+    public static final String FIRMWARE_MODULE_VERSION_EXPECT = "FirmwareModuleVersionExpect";
+    public static final String FIRMWARE_MODULE_VERSION_OPENSSH = "FirmwareModuleVersionOpenssh";
+    public static final String FIRMWARE_MODULE_VERSION_OPENSSL = "FirmwareModuleVersionOpenssl";
+    public static final String FIRMWARE_MODULE_VERSION_PROFTPD = "FirmwareModuleVersionProftpd";
+    public static final String FIRMWARE_MODULE_VERSION_TCPDUMP = "FirmwareModuleVersionTcpdump";
+
+    
     public static final String FIRMWARE_PUSH_TO_NEW_DEVICES = "FirmwarePushToNewDevices";
     public static final String FIRMWARE_VERSION = "FirmwareVersion";
     public static final String FROM_DATE = "FromDate";
