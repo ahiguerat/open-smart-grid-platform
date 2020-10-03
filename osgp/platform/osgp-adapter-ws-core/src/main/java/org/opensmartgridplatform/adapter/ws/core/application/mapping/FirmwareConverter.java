@@ -20,6 +20,7 @@ import org.opensmartgridplatform.adapter.ws.schema.core.firmwaremanagement.Firmw
 import org.opensmartgridplatform.domain.core.entities.DeviceModel;
 import org.opensmartgridplatform.domain.core.valueobjects.FirmwareModuleData;
 
+
 import ma.glasnost.orika.CustomConverter;
 import ma.glasnost.orika.MappingContext;
 import ma.glasnost.orika.metadata.Type;
@@ -60,6 +61,7 @@ class FirmwareConverter extends CustomConverter<org.opensmartgridplatform.domain
         output.setManufacturer(deviceModel.getManufacturer().getCode());
 
         final org.opensmartgridplatform.adapter.ws.schema.core.firmwaremanagement.FirmwareModuleData firmwareModuleData = new org.opensmartgridplatform.adapter.ws.schema.core.firmwaremanagement.FirmwareModuleData();
+        
         firmwareModuleData.setModuleVersionComm(source.getModuleVersionComm());
         firmwareModuleData.setModuleVersionFunc(source.getModuleVersionFunc());
         firmwareModuleData.setModuleVersionMa(source.getModuleVersionMa());

@@ -50,8 +50,7 @@ import io.netty.util.internal.logging.Slf4JLoggerFactory;
  */
 @Configuration
 @EnableWs
-@ComponentScan(basePackages = { "org.opensmartgridplatform.adapter.protocol.oslp.elster",
-        "org.opensmartgridplatform.adapter.protocol.oslp.elster.ws.endpoints" })
+@ComponentScan(basePackages = { "org.opensmartgridplatform.adapter.protocol.oslp.elster"})
 @EnableTransactionManagement()
 @Import({ MessagingConfig.class, OslpConfig.class, OslpPersistenceConfig.class, WritablePersistenceConfig.class })
 @PropertySource("classpath:osgp-adapter-protocol-oslp-elster.properties")

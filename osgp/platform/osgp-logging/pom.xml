@@ -63,6 +63,18 @@
           </dependency>
         </dependencies>
       </plugin>
+      
+      		<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>${maven.tomcat7.maven.plugin.version}</version>
+				<configuration>
+					<!-- Use tomcat9 Deploy app here server Values in tags and step 2 maven In the configuration file id Value consistent-->
+					<server>tomcat9</server>
+					<update>true</update>
+				</configuration>
+			</plugin>      
+      
     </plugins>
   </build>
 

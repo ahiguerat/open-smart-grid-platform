@@ -40,7 +40,7 @@ import org.springframework.validation.beanvalidation.MethodValidationPostProcess
 @Configuration
 @ComponentScan(basePackages = { "org.opensmartgridplatform.shared.domain.services",
         "org.opensmartgridplatform.domain.core", "org.opensmartgridplatform.adapter.ws.core",
-        "org.opensmartgridplatform.domain.logging" })
+        "org.opensmartgridplatform.logging.domain" })
 @ImportResource("classpath:applicationContext.xml")
 @Import({ PersistenceConfig.class, WritablePersistenceConfig.class, ReadOnlyLoggingConfig.class, WebServiceConfig.class,
         CoreWebServiceConfig.class })
