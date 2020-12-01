@@ -164,19 +164,19 @@
 		<dependency>
 			<groupId>org.opensmartgridplatform</groupId>
 			<artifactId>osgp-ws-core</artifactId>
-			<version>4.39.0-SNAPSHOT</version>
+			<version>5.3.0-SNAPSHOT</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.opensmartgridplatform</groupId>
 			<artifactId>osgp-ws-admin</artifactId>
-			<version>4.39.0-SNAPSHOT</version>
+			<version>5.3.0-SNAPSHOT</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.opensmartgridplatform</groupId>
 			<artifactId>osgp-ws-publiclighting</artifactId>
-			<version>4.39.0-SNAPSHOT</version>
+			<version>5.3.0-SNAPSHOT</version>
 		</dependency>
 
 		<!-- <dependency> -->
@@ -194,7 +194,7 @@
 		<dependency>
 			<groupId>org.opensmartgridplatform</groupId>
 			<artifactId>osgp-dto</artifactId>
-			<version>4.39.0-SNAPSHOT</version>
+			<version>5.3.0-SNAPSHOT</version>
 		</dependency>
 
 		<dependency>
@@ -227,6 +227,7 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-websocket</artifactId>
+		<!-- 	<scope>provided</scope> -->
 		</dependency>
 
 		<dependency>

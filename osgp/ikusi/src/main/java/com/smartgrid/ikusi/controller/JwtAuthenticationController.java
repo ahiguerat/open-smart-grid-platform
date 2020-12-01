@@ -1,5 +1,7 @@
 package com.smartgrid.ikusi.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -23,6 +25,8 @@ import com.smartgrid.ikusi.security.LoginService;
 @RequestMapping(value = "/session", produces = { "application/json" })
 public class JwtAuthenticationController {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(JwtAuthenticationController.class);
+	
 	@Autowired
 	private AuthenticationManager authenticationManager;
 
@@ -36,6 +40,8 @@ public class JwtAuthenticationController {
 	public ResponseEntity<?> createAuthenticationToken(@RequestBody Login authenticationRequest) throws Exception {
 
 		authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
+		
+		LOGGER.error("User-token: {}.", authenticationRequest.getUsername());
 
 		final UserDetails userDetails = loginService.loadUserByUsername(authenticationRequest.getUsername());
 
@@ -52,6 +58,7 @@ public class JwtAuthenticationController {
 	private void authenticate(String username, String password) throws Exception {
 		try {
 			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
+			LOGGER.info("Autentivcate(user, pass): {}, {}.",username, password );
 		} catch (DisabledException e) {
 			throw new Exception("USER_DISABLED", e);
 		} catch (BadCredentialsException e) {

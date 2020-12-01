@@ -9,6 +9,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.hibernate5.Hibernate5Module;
 
+
 @Configuration
 public class JacksonConfig {
 
@@ -30,6 +31,7 @@ public class JacksonConfig {
 		hibernate5Module.disable(Hibernate5Module.Feature.USE_TRANSIENT_ANNOTATION);
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.registerModule(hibernate5Module);
+		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 		return mapper;
 	}
 }
