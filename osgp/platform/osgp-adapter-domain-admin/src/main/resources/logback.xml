@@ -32,7 +32,7 @@
 		</encoder>
 	</appender>
 
-	<root level="INFO" additivity="false">
+	<root level="WARN" additivity="false">
 		<appender-ref ref="CONSOLE" />
 		<appender-ref ref="FILE" />
 		<!-- Currently switched off due to performance issues. -->

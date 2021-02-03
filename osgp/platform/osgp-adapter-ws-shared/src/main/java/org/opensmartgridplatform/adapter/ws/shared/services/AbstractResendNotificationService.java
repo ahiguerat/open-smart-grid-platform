@@ -123,6 +123,12 @@ public abstract class AbstractResendNotificationService<T extends Enum<T>> {
                     responseDataForNotifying.size(), createdBefore, notificationsResent + 1);
             for (final ResponseData responseData : responseDataForNotifying) {
                 this.resendNotificationAndUpdateResponseData(responseData);
+                try {
+                    // thread to sleep for 50 milliseconds
+                    Thread.sleep(150, 0);
+                 } catch (Exception e) {
+                    LOGGER.info("Retardo fallo: {}",e);
+                 }
             }
             responseDataForNotifying = this.getResponseDataForNotifying(notificationsResent, createdBefore);
         }
